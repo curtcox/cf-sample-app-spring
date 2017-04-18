@@ -19,19 +19,6 @@ class Application {
 
 	@RequestMapping("/")
 	public String index(Model model) {
-		model.addAttribute("cfapp", json.readValue(application, LinkedHashMap.class))
-		try {
-			def cfservices = json.readValue(services, LinkedHashMap.class)
-			def cfservicename = cfservices.keySet().iterator().next();
-			def cfservice = cfservices.get(cfservicename).get(0);
-			model.addAttribute("cfservices", cfservices)
-			model.addAttribute("cfservicename", cfservicename)
-			model.addAttribute("cfservice", cfservice)
-		} catch (Exception ex) {
-			// No services
-			model.addAttribute("cfservice", "")
-			model.addAttribute("cfservice", new LinkedHashMap())
-		}
 		return "index"
 	}
 
